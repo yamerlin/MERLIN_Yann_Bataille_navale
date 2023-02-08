@@ -28,7 +28,44 @@ public class bataille{
 
     }
 
+    public static void AfficherGrille(int grille[][]){
+
+        //Variable utilisée pour afficher le numéro de la ligne
+        int numero_de_la_ligne = 0;
+
+        //Affichage des lettres des colonnes
+        System.out.print("   A B C D E F G H I J");
+
+        //Défiler chaque ligne
+        for(int i = 0; i <10; i++){
+
+            //Incrémenter le numéro de la ligne
+            numero_de_la_ligne++;
+
+            //Aller a la ligne suivante
+            System.out.println("");
+            System.out.print(numero_de_la_ligne);
+
+            //Pour un affichage propre, on ne veut pas mettre d'espace apres le numéro 10, car il prend deja deux caractères de place
+            if(numero_de_la_ligne != 10){
+                System.out.print(" ");
+            }
+
+            //Défiler chaque colonne
+            for(int j = 0; j <10; j++) {
+                System.out.print(" ");
+
+                //Affichage de la grille
+                System.out.print(grille[i][j]);
+            }
+        }
+
+    }
+
     public static void main(String[] args){
-        System.out.println("Hello world");
+
+        grilleJeu[5][2] = 6;
+
+        AfficherGrille(grilleJeu);
     }
 }
