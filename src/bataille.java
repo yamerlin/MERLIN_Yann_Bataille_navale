@@ -6,7 +6,6 @@ public class bataille{
     public static int [][] grilleJeu = new int[10][10];
 
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
-
         boolean isPosOk = true;
             for(int i = 0; i<t; i++){
                 if(d == 1){
