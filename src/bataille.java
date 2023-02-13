@@ -49,14 +49,14 @@ public class bataille{
         int c = randRange(0,9);
         int d = randRange(1,3);
 
-        //Initialiser porte-avions, croiseur, contre-torpilleurs, torpilleur
+        //Initialiser porte-avions
         while(posOk(grilleOrdi, l, c, d, 5) != true) {
             l = randRange(0, 9);
             c = randRange(0, 9);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 5) == true) {
-            initBateaux(l, c, d, 5);
+            initBateaux(l, c, d, 5, 1);
         }
 
         //Initialiser croiseur
@@ -66,7 +66,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 4) == true) {
-            initBateaux(l, c, d, 4);
+            initBateaux(l, c, d, 4, 2);
         }
 
         //Initialiser contre-torpilleurs
@@ -76,7 +76,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(l, c, d, 3);
+            initBateaux(l, c, d, 3, 3);
         }
 
         //Initialiser sous-marin
@@ -86,7 +86,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(l, c, d, 3);
+            initBateaux(l, c, d, 3,4);
         }
 
         //Initialiser torpilleur
@@ -96,12 +96,16 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 2) == true) {
-            initBateaux(l, c, d, 2);
+            initBateaux(l, c, d, 2,5);
         }
     }
 
-    public static void initBateaux(int l, int c, int d, int t){
-
+    public static void initBateaux(int l, int c, int d, int t, int typeDeBateau){
+        if (d == 1){
+            for(int i = 0; i<t; i++){
+                //if()
+            }
+        }
     }
 
     public static void AfficherGrille(int grille[][]){
