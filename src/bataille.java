@@ -24,6 +24,11 @@ public class bataille{
         return isPosOk;
     }
 
+    public static Random rand = new Random();
+    public static int randRange(int a, int b){
+        return rand.nextInt(b-a)+a;
+    }
+
     public static void initGrilleOrdi(){
 
     }
@@ -67,5 +72,9 @@ public class bataille{
         grilleJeu[5][2] = 6;
 
         AfficherGrille(grilleJeu);
+
+        for(int i = 0; i<10; i++){
+            System.out.println(randRange(0,10));
+        }
     }
 }
