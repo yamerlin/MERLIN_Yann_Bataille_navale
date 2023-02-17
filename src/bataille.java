@@ -8,32 +8,30 @@ public class bataille{
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean isPosOk = true;
 
-        if(d==1){
-            if(l+t>9){
+        if(d == 1){
+            if(c+t < grilleJeu.length-1){
+                for(int i = 0; i<t-1; i++){
+                    if(grille[l][c+i] != 0){
+                        isPosOk = false;
+                    }
+                }
+            }
+            else{
                 isPosOk = false;
             }
-            else {
-                for (int i = 0; i < t-1; i++) {
-                    l = l + i;
-                    if (grille[l][c] != 0) {
+        }
+
+        if(d == 2){
+            if(l+t < grilleJeu.length-1){
+                for(int i = 0; i<t-1; i++){
+                    if(grille[l+i][c] != 0){
                         isPosOk = false;
                     }
                 }
             }
         }
-
-        if(d==2){
-            if(c+t>9){
-                isPosOk = false;
-            }
-            else{
-                for(int i = 0; i < t-1; i++) {
-                    c = c + i;
-                    if (grille[l][c] != 0) {
-                        isPosOk = false;
-                    }
-                }
-            }
+        else{
+            isPosOk = false;
         }
 
         return isPosOk;
@@ -45,8 +43,8 @@ public class bataille{
     }
 
     public static void initGrilleOrdi(){
-        int l = randRange(0,9);
-        int c = randRange(0,9);
+        int l = randRange(0,10);
+        int c = randRange(0,10);
         int d = randRange(1,3);
 
         //Initialiser porte-avions
@@ -103,7 +101,12 @@ public class bataille{
     public static void initBateaux(int l, int c, int d, int t, int typeDeBateau){
         if (d == 1){
             for(int i = 0; i<t; i++){
-                //if()
+                grilleOrdi[l][c+i] = typeDeBateau;
+            }
+        }
+        if (d == 2){
+            for(int i = 0; i<t; i++){
+                grilleOrdi[l+i][c] = typeDeBateau;
             }
         }
     }
@@ -145,5 +148,7 @@ public class bataille{
     public static void main(String[] args){
 
         initGrilleOrdi();
+        AfficherGrille(grilleOrdi);
+
     }
 }
