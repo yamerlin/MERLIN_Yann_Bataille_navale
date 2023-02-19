@@ -44,58 +44,21 @@ public class bataille{
     }
 
     public static void initGrilleOrdi(){
+        int[] tailleBateaux = new int[]{0,5,4,3,3,2};
+
         int l = randRange(0,10);
         int c = randRange(0,10);
         int d = randRange(1,3);
 
-        //Initialiser porte-avions
-        while(posOk(grilleOrdi, l, c, d, 5) != true) {
-            l = randRange(0, 10);
-            c = randRange(0, 10);
-            d = randRange(1, 3);
-        }
-        if (posOk(grilleOrdi, l, c, d, 5) == true) {
-            initBateaux(grilleOrdi,l, c, d, 5, 1);
-        }
-
-        //Initialiser croiseur
-        while(posOk(grilleOrdi, l, c, d, 4) != true) {
-            l = randRange(0, 10);
-            c = randRange(0, 10);
-            d = randRange(1, 3);
-        }
-        if (posOk(grilleOrdi, l, c, d, 4) == true) {
-            initBateaux(grilleOrdi,l, c, d, 4, 2);
-        }
-
-        //Initialiser contre-torpilleurs
-        while(posOk(grilleOrdi, l, c, d, 3) != true) {
-            l = randRange(0, 10);
-            c = randRange(0, 10);
-            d = randRange(1, 3);
-        }
-        if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(grilleOrdi,l, c, d, 3, 3);
-        }
-
-        //Initialiser sous-marin
-        while(posOk(grilleOrdi, l, c, d, 3) != true) {
-            l = randRange(0, 10);
-            c = randRange(0, 10);
-            d = randRange(1, 3);
-        }
-        if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(grilleOrdi,l, c, d, 3,4);
-        }
-
-        //Initialiser torpilleur
-        while(posOk(grilleOrdi, l, c, d, 2) != true) {
-            l = randRange(0, 10);
-            c = randRange(0, 10);
-            d = randRange(1, 3);
-        }
-        if (posOk(grilleOrdi, l, c, d, 2) == true) {
-            initBateaux(grilleOrdi,l, c, d, 2,5);
+        for(int i = 1; i < 6; i++){
+            while(posOk(grilleOrdi, l, c, d, tailleBateaux[i]) != true) {
+                l = randRange(0, 10);
+                c = randRange(0, 10);
+                d = randRange(1, 3);
+            }
+            if (posOk(grilleOrdi, l, c, d, tailleBateaux[i]) == true) {
+                initBateaux(grilleOrdi,l, c, d, tailleBateaux[i], i);
+            }
         }
     }
 
