@@ -9,29 +9,29 @@ public class bataille{
         boolean isPosOk = true;
 
         if(d == 1){
-            if(c+t < grilleJeu.length-1){
-                for(int i = 0; i<t-1; i++){
+            if(c+t >= 9){
+                isPosOk = false;
+            }
+            else{
+                for(int i = 0; i < t+1; i++){
                     if(grille[l][c+i] != 0){
                         isPosOk = false;
                     }
                 }
             }
-            else{
-                isPosOk = false;
-            }
         }
 
         if(d == 2){
-            if(l+t < grilleJeu.length-1){
-                for(int i = 0; i<t-1; i++){
+            if(l+t >= 9){
+                isPosOk = false;
+            }
+            else{
+                for(int i = 0; i < t+1; i++){
                     if(grille[l+i][c] != 0){
                         isPosOk = false;
                     }
                 }
             }
-        }
-        else{
-            isPosOk = false;
         }
 
         return isPosOk;
@@ -49,8 +49,8 @@ public class bataille{
 
         //Initialiser porte-avions
         while(posOk(grilleOrdi, l, c, d, 5) != true) {
-            l = randRange(0, 9);
-            c = randRange(0, 9);
+            l = randRange(0, 10);
+            c = randRange(0, 10);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 5) == true) {
@@ -59,8 +59,8 @@ public class bataille{
 
         //Initialiser croiseur
         while(posOk(grilleOrdi, l, c, d, 4) != true) {
-            l = randRange(0, 9);
-            c = randRange(0, 9);
+            l = randRange(0, 10);
+            c = randRange(0, 10);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 4) == true) {
@@ -69,8 +69,8 @@ public class bataille{
 
         //Initialiser contre-torpilleurs
         while(posOk(grilleOrdi, l, c, d, 3) != true) {
-            l = randRange(0, 9);
-            c = randRange(0, 9);
+            l = randRange(0, 10);
+            c = randRange(0, 10);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
@@ -79,8 +79,8 @@ public class bataille{
 
         //Initialiser sous-marin
         while(posOk(grilleOrdi, l, c, d, 3) != true) {
-            l = randRange(0, 9);
-            c = randRange(0, 9);
+            l = randRange(0, 10);
+            c = randRange(0, 10);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
@@ -89,8 +89,8 @@ public class bataille{
 
         //Initialiser torpilleur
         while(posOk(grilleOrdi, l, c, d, 2) != true) {
-            l = randRange(0, 9);
-            c = randRange(0, 9);
+            l = randRange(0, 10);
+            c = randRange(0, 10);
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 2) == true) {
@@ -149,6 +149,5 @@ public class bataille{
 
         initGrilleOrdi();
         AfficherGrille(grilleOrdi);
-
     }
 }
