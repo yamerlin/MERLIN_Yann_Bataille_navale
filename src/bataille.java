@@ -144,11 +144,17 @@ public class bataille{
                     sensUtilisateur = scanner.nextLine();
                 }
 
-                if(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i])){
+
+                System.out.println(Integer.parseInt(chiffreUtilisateur)-1);
+                System.out.println((int) lettreUtilisateur.charAt(0) - 65);
+                System.out.println(Integer.parseInt(sensUtilisateur));
+                System.out.println(tailleBateaux[i]);
+
+                if(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]) != true){
                     System.out.println("Erreur. Le bateau ne rentre pas dans la grille. Veuillez recommencer");
                 }
 
-            } while(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]));
+            } while(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]) != true);
 
             initBateaux(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1, (int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur), tailleBateaux[i], i);
         }
@@ -157,12 +163,12 @@ public class bataille{
     public static void initBateaux(int grille[][], int l, int c, int d, int t, int typeDeBateau){
         if (d == 1){
             for(int i = 0; i<t; i++){
-                grilleOrdi[l][c+i] = typeDeBateau;
+                grille[l][c+i] = typeDeBateau;
             }
         }
         if (d == 2){
             for(int i = 0; i<t; i++){
-                grilleOrdi[l+i][c] = typeDeBateau;
+                grille[l+i][c] = typeDeBateau;
             }
         }
     }
