@@ -55,7 +55,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 5) == true) {
-            initBateaux(l, c, d, 5, 1);
+            initBateaux(grilleOrdi,l, c, d, 5, 1);
         }
 
         //Initialiser croiseur
@@ -65,7 +65,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 4) == true) {
-            initBateaux(l, c, d, 4, 2);
+            initBateaux(grilleOrdi,l, c, d, 4, 2);
         }
 
         //Initialiser contre-torpilleurs
@@ -75,7 +75,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(l, c, d, 3, 3);
+            initBateaux(grilleOrdi,l, c, d, 3, 3);
         }
 
         //Initialiser sous-marin
@@ -85,7 +85,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 3) == true) {
-            initBateaux(l, c, d, 3,4);
+            initBateaux(grilleOrdi,l, c, d, 3,4);
         }
 
         //Initialiser torpilleur
@@ -95,7 +95,7 @@ public class bataille{
             d = randRange(1, 3);
         }
         if (posOk(grilleOrdi, l, c, d, 2) == true) {
-            initBateaux(l, c, d, 2,5);
+            initBateaux(grilleOrdi,l, c, d, 2,5);
         }
     }
 
@@ -107,32 +107,54 @@ public class bataille{
         tableauDeBateaux[4] = "sous-marin";
         tableauDeBateaux[5] = "torpilleur";
 
-        String expressionRegLettre = "^[a-jA-J]";
-        String expressionRegChiffre = "^[1-9]|10";
+        int[] tailleBateaux = new int[]{ 0,5,4,3,3,2 };
 
-        String inputUtilisateur;
+        String expressionRegLettre = "^[A-J]";
+        String expressionRegChiffre = "^[1-9]|10";
+        String expresssionRegSens = "^[1-2]";
+
+        String lettreUtilisateur;
+        String chiffreUtilisateur;
+        String sensUtilisateur;
 
         for(int i = 1; i < 6; i++){
-            System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
-            Scanner scanner = new Scanner(System.in);
-            inputUtilisateur = scanner.nextLine();
-            while(!inputUtilisateur.matches(expressionRegLettre)){
-                System.out.println("Erreur. Vous n'avez pas saisi une lettre entre A et J. Veuillez recommencer");
+            do {
                 System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
-                inputUtilisateur = scanner.nextLine();
-            }
+                Scanner scanner = new Scanner(System.in);
+                lettreUtilisateur = scanner.nextLine();
+                while (!lettreUtilisateur.matches(expressionRegLettre)) {
+                    System.out.println("Erreur. Vous n'avez pas saisi une lettre entre A et J. Veuillez recommencer");
+                    System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
+                    lettreUtilisateur = scanner.nextLine();
+                }
 
-            System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
-            inputUtilisateur = scanner.nextLine();
-            while(!inputUtilisateur.matches(expressionRegChiffre)){
-                System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 10. Veuillez recommencer");
                 System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
-                inputUtilisateur = scanner.nextLine();
-            }
+                chiffreUtilisateur = scanner.nextLine();
+                while (!chiffreUtilisateur.matches(expressionRegChiffre)) {
+                    System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 10. Veuillez recommencer");
+                    System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
+                    chiffreUtilisateur = scanner.nextLine();
+                }
+
+                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                sensUtilisateur = scanner.nextLine();
+                while (!sensUtilisateur.matches(expresssionRegSens)) {
+                    System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 2. Veuillez recommencer");
+                    System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                    sensUtilisateur = scanner.nextLine();
+                }
+
+                if(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i])){
+                    System.out.println("Erreur. Le bateau ne rentre pas dans la grille. Veuillez recommencer");
+                }
+
+            } while(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]));
+
+            initBateaux(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1, (int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur), tailleBateaux[i], i);
         }
     }
 
-    public static void initBateaux(int l, int c, int d, int t, int typeDeBateau){
+    public static void initBateaux(int grille[][], int l, int c, int d, int t, int typeDeBateau){
         if (d == 1){
             for(int i = 0; i<t; i++){
                 grilleOrdi[l][c+i] = typeDeBateau;
@@ -181,6 +203,28 @@ public class bataille{
 
     public static void main(String[] args){
 
+        //initGrilleJeu();
+
+        //initGrilleOrdi();
+        //AfficherGrille(grilleOrdi);
+
+        String test = "A";
+        int ascii = (int) test.charAt(0);
+        System.out.println(ascii);
+
+        String test1 = "B";
+        int ascii1 = (int) test1.charAt(0);
+        System.out.println(ascii1);
+
+        String test2 = "C";
+        int ascii2 = (int) test2.charAt(0);
+        System.out.println(ascii2);
+
+        String test3 = "D";
+        int ascii3 = (int) test3.charAt(0);
+        System.out.println(ascii3);
+
         initGrilleJeu();
+        AfficherGrille(grilleJeu);
     }
 }
