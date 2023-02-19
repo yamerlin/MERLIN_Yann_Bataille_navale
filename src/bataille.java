@@ -9,7 +9,7 @@ public class bataille{
         boolean isPosOk = true;
 
         if(d == 1){
-            if(c+t >= 9){
+            if(c+t >= 10){
                 isPosOk = false;
             }
             else{
@@ -22,7 +22,7 @@ public class bataille{
         }
 
         if(d == 2){
-            if(l+t >= 9){
+            if(l+t >= 10){
                 isPosOk = false;
             }
             else{
