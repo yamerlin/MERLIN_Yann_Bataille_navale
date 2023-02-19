@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class bataille{
 
@@ -98,6 +99,39 @@ public class bataille{
         }
     }
 
+    public static void initGrilleJeu(){
+        String[] tableauDeBateaux = new String[6];
+        tableauDeBateaux[1] = "porte-avions";
+        tableauDeBateaux[2] = "croiseur";
+        tableauDeBateaux[3] = "contre-torpilleurs";
+        tableauDeBateaux[4] = "sous-marin";
+        tableauDeBateaux[5] = "torpilleur";
+
+        String expressionRegLettre = "^[a-jA-J]";
+        String expressionRegChiffre = "^[1-9]|10";
+
+        String inputUtilisateur;
+
+        for(int i = 1; i < 6; i++){
+            System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
+            Scanner scanner = new Scanner(System.in);
+            inputUtilisateur = scanner.nextLine();
+            while(!inputUtilisateur.matches(expressionRegLettre)){
+                System.out.println("Erreur. Vous n'avez pas saisi une lettre entre A et J. Veuillez recommencer");
+                System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
+                inputUtilisateur = scanner.nextLine();
+            }
+
+            System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
+            inputUtilisateur = scanner.nextLine();
+            while(!inputUtilisateur.matches(expressionRegChiffre)){
+                System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 10. Veuillez recommencer");
+                System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
+                inputUtilisateur = scanner.nextLine();
+            }
+        }
+    }
+
     public static void initBateaux(int l, int c, int d, int t, int typeDeBateau){
         if (d == 1){
             for(int i = 0; i<t; i++){
@@ -147,7 +181,6 @@ public class bataille{
 
     public static void main(String[] args){
 
-        initGrilleOrdi();
-        AfficherGrille(grilleOrdi);
+        initGrilleJeu();
     }
 }
