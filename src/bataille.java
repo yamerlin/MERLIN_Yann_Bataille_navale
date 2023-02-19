@@ -10,11 +10,11 @@ public class bataille{
         boolean isPosOk = true;
 
         if(d == 1){
-            if(c+t >= 10){
+            if(c+t-1 >= 10){
                 isPosOk = false;
             }
             else{
-                for(int i = 0; i < t+1; i++){
+                for(int i = 0; i < t; i++){
                     if(grille[l][c+i] != 0){
                         isPosOk = false;
                     }
@@ -23,11 +23,11 @@ public class bataille{
         }
 
         if(d == 2){
-            if(l+t >= 10){
+            if(l+t-1 >= 10){
                 isPosOk = false;
             }
             else{
-                for(int i = 0; i < t+1; i++){
+                for(int i = 0; i < t; i++){
                     if(grille[l+i][c] != 0){
                         isPosOk = false;
                     }
@@ -211,24 +211,8 @@ public class bataille{
 
         //initGrilleJeu();
 
-        //initGrilleOrdi();
-        //AfficherGrille(grilleOrdi);
-
-        String test = "A";
-        int ascii = (int) test.charAt(0);
-        System.out.println(ascii);
-
-        String test1 = "B";
-        int ascii1 = (int) test1.charAt(0);
-        System.out.println(ascii1);
-
-        String test2 = "C";
-        int ascii2 = (int) test2.charAt(0);
-        System.out.println(ascii2);
-
-        String test3 = "D";
-        int ascii3 = (int) test3.charAt(0);
-        System.out.println(ascii3);
+        initGrilleOrdi();
+        AfficherGrille(grilleOrdi);
 
         initGrilleJeu();
         AfficherGrille(grilleJeu);
