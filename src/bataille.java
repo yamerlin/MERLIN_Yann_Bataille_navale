@@ -171,8 +171,8 @@ public class bataille{
     public static boolean couler(int[][] grille, int numBateau){
         boolean estCouler = true;
 
-        for(int i = 0; i < grille.length; i++){
-            for(int j = 0; j < grille.length; i++){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
                 if(grille[i][j] == numBateau){
                     estCouler = false;
                 }
