@@ -198,6 +198,13 @@ public class bataille{
         }
     }
 
+    public static int[] tirOrdinateur(){
+        int[] tableauPosTir = new int[2];
+        tableauPosTir[0] = randRange(0,10);
+        tableauPosTir[1] = randRange(0,10);
+        return tableauPosTir;
+    }
+
     public static void main(String[] args){
 
         //initGrilleJeu();
