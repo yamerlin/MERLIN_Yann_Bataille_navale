@@ -243,6 +243,7 @@ public class bataille{
             tirOrdiL = tirOrdinateur()[0];
             tirOrdiC = tirOrdinateur()[1];
             mouvement(grilleJeu, tirOrdiL, tirOrdiC);
+            AfficherGrille(grilleOrdi);
 
             if(vainqueur(grilleJeu) != true) {
                 System.out.println("Tour du joueur : ");
