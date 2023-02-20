@@ -183,6 +183,21 @@ public class bataille{
         return estCouler;
     }
 
+    public static void mouvement(int[][] grille, int l, int c){
+        if(grille[l][c] == 0){
+            System.out.println("A l'eau !");
+        }
+        else{
+            if(couler(grille, grille[l][c]) == true){
+                System.out.println("Couler !");
+            }
+            else{
+                System.out.println("Toucher !");
+            }
+            grille[l][c] = 6;
+        }
+    }
+
     public static void main(String[] args){
 
         //initGrilleJeu();
