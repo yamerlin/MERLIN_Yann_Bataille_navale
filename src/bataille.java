@@ -167,7 +167,20 @@ public class bataille{
                 System.out.print(grille[i][j]);
             }
         }
+    }
 
+    public static boolean couler(int[][] grille, int numBateau){
+        boolean estCouler = true;
+
+        for(int i = 0; i < grille.length; i++){
+            for(int j = 0; j < grille.length; i++){
+                if(grille[i][j] == numBateau){
+                    estCouler = false;
+                }
+            }
+        }
+
+        return estCouler;
     }
 
     public static void main(String[] args){
