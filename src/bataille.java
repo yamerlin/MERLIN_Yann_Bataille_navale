@@ -5,6 +5,7 @@ public class bataille{
 
     public static int [][] grilleOrdi = new int[10][10];
     public static int [][] grilleJeu = new int[10][10];
+    public static int [][] grilleAffichage = new int[10][10];   //Grille pour visualiser nos tirs deja effectue durant la partie
 
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean isPosOk = true;
@@ -120,6 +121,9 @@ public class bataille{
             } while(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]) != true);
 
             initBateaux(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1, (int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur), tailleBateaux[i], i);
+
+            System.out.println("Votre grille : ");
+            AfficherGrille(grilleJeu);
         }
     }
 
@@ -195,6 +199,7 @@ public class bataille{
                 System.out.println("Toucher !");
             }
             grille[l][c] = 6;
+            grilleAffichage[l][c] = 6;
         }
     }
 
@@ -223,23 +228,59 @@ public class bataille{
     }
 
     public static void engagement(){
+        Scanner scanner = new Scanner(System.in);
+
         int tirOrdiL;
         int tirOrdiC;
+
+        String expressionRegLettre = "^[A-J]";
+        String expressionRegChiffre = "^[1-9]|10";
+
+        String lettreUtilisateur;
+        String chiffreUtilisateur;
+
         initGrilleOrdi();
         initGrilleJeu();
         while(vainqueur(grilleJeu) != true || vainqueur(grilleOrdi) != true){
-            AfficherGrille(grilleJeu);
-            System.out.println("Tour du joueur : ");
-
             System.out.println("Tour de l'ordinateur : ");
             tirOrdiL = tirOrdinateur()[0];
             tirOrdiC = tirOrdinateur()[1];
             mouvement(grilleJeu, tirOrdiL, tirOrdiC);
+
+            if(vainqueur(grilleJeu) != true) {
+                System.out.println("Tour du joueur : ");
+
+                do {
+                    System.out.println("Veuillez entrer la lettre majuscule (A - J) de votre position de tir : ");
+                    lettreUtilisateur = scanner.nextLine();
+                    if (!lettreUtilisateur.matches(expressionRegLettre)) {
+                        System.out.println("Ce n'est pas une lettre majuscule comprise entre A et J, veuillez recommencer.");
+                    }
+                } while (!lettreUtilisateur.matches(expressionRegLettre));
+
+                do {
+                    System.out.println("Veuillez entrer le chiffre (1 - 10) de votre position de tir : ");
+                    chiffreUtilisateur = scanner.nextLine();
+                    if (!chiffreUtilisateur.matches(expressionRegLettre)) {
+                        System.out.println("Ce n'est pas un chiffre comprise entre 1 et 10, veuillez recommencer.");
+                    }
+                } while (!chiffreUtilisateur.matches(expressionRegChiffre));
+
+                grilleAffichage[Integer.parseInt(chiffreUtilisateur) - 1][(int) lettreUtilisateur.charAt(0) - 65] = 1;
+                mouvement(grilleOrdi, Integer.parseInt(chiffreUtilisateur) - 1, (int) lettreUtilisateur.charAt(0) - 65);
+                System.out.println("La grille de vos tirs (6 = bateau touche, 1 = tir a l'eau) : ");
+                AfficherGrille(grilleAffichage);
+            }
+            else{
+                System.out.println("Victoire de l'ordinateur !");
+            }
         }
-        AfficherGrille(grilleJeu);
+        if(vainqueur(grilleOrdi) == true) {
+            System.out.println("Vous remportez la partie !");
+        }
     }
 
     public static void main(String[] args){
-
+        engagement();
     }
 }
