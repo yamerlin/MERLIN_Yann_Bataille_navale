@@ -83,6 +83,7 @@ public class bataille{
 
         for(int i = 1; i < 6; i++){
             do {
+                System.out.println(" ");
                 System.out.println("Entrez la lettre majuscule (A - J) pour le " + tableauDeBateaux[i]);
                 Scanner scanner = new Scanner(System.in);
                 lettreUtilisateur = scanner.nextLine();
@@ -107,12 +108,6 @@ public class bataille{
                     System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
                     sensUtilisateur = scanner.nextLine();
                 }
-
-
-                System.out.println(Integer.parseInt(chiffreUtilisateur)-1);
-                System.out.println((int) lettreUtilisateur.charAt(0) - 65);
-                System.out.println(Integer.parseInt(sensUtilisateur));
-                System.out.println(tailleBateaux[i]);
 
                 if(posOk(grilleJeu, Integer.parseInt(chiffreUtilisateur)-1,(int) lettreUtilisateur.charAt(0) - 65, Integer.parseInt(sensUtilisateur),tailleBateaux[i]) != true){
                     System.out.println("Erreur. Le bateau ne rentre pas dans la grille. Veuillez recommencer");
@@ -228,6 +223,8 @@ public class bataille{
     }
 
     public static void engagement(){
+        AfficherGrille(grilleJeu);
+
         Scanner scanner = new Scanner(System.in);
 
         int tirOrdiL;
