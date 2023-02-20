@@ -205,6 +205,23 @@ public class bataille{
         return tableauPosTir;
     }
 
+    public static boolean vainqueur(int grille[][]){
+        boolean isVainqueur = false;
+        int nbBateauCouler = 0;
+
+        for(int i = 1; i<6; i++){
+            if(couler(grille, i) == true){
+                nbBateauCouler = nbBateauCouler + 1;
+            }
+        }
+
+        if(nbBateauCouler == 5){
+            isVainqueur = true;
+        }
+
+        return isVainqueur;
+    }
+
     public static void main(String[] args){
 
         //initGrilleJeu();
