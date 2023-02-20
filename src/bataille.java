@@ -74,7 +74,7 @@ public class bataille{
 
         String expressionRegLettre = "^[A-J]";
         String expressionRegChiffre = "^[1-9]|10";
-        String expresssionRegSens = "^[1-2]";
+        String expressionRegSens = "^[1-2]";
 
         String lettreUtilisateur;
         String chiffreUtilisateur;
@@ -82,7 +82,7 @@ public class bataille{
 
         for(int i = 1; i < 6; i++){
             do {
-                System.out.println("Entrez la lettre pour le " + tableauDeBateaux[i]);
+                System.out.println("Entrez la lettre majuscule (A - J) pour le " + tableauDeBateaux[i]);
                 Scanner scanner = new Scanner(System.in);
                 lettreUtilisateur = scanner.nextLine();
                 while (!lettreUtilisateur.matches(expressionRegLettre)) {
@@ -91,7 +91,7 @@ public class bataille{
                     lettreUtilisateur = scanner.nextLine();
                 }
 
-                System.out.println("Entrez le chiffre pour le " + tableauDeBateaux[i]);
+                System.out.println("Entrez le chiffre (1 - 10) pour le " + tableauDeBateaux[i]);
                 chiffreUtilisateur = scanner.nextLine();
                 while (!chiffreUtilisateur.matches(expressionRegChiffre)) {
                     System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 10. Veuillez recommencer");
@@ -101,7 +101,7 @@ public class bataille{
 
                 System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
                 sensUtilisateur = scanner.nextLine();
-                while (!sensUtilisateur.matches(expresssionRegSens)) {
+                while (!sensUtilisateur.matches(expressionRegSens)) {
                     System.out.println("Erreur. Vous n'avez pas saisi un chiffre entre 1 et 2. Veuillez recommencer");
                     System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
                     sensUtilisateur = scanner.nextLine();
@@ -222,14 +222,24 @@ public class bataille{
         return isVainqueur;
     }
 
+    public static void engagement(){
+        int tirOrdiL;
+        int tirOrdiC;
+        initGrilleOrdi();
+        initGrilleJeu();
+        while(vainqueur(grilleJeu) != true || vainqueur(grilleOrdi) != true){
+            AfficherGrille(grilleJeu);
+            System.out.println("Tour du joueur : ");
+
+            System.out.println("Tour de l'ordinateur : ");
+            tirOrdiL = tirOrdinateur()[0];
+            tirOrdiC = tirOrdinateur()[1];
+            mouvement(grilleJeu, tirOrdiL, tirOrdiC);
+        }
+        AfficherGrille(grilleJeu);
+    }
+
     public static void main(String[] args){
 
-        //initGrilleJeu();
-
-        initGrilleOrdi();
-        AfficherGrille(grilleOrdi);
-
-        initGrilleJeu();
-        AfficherGrille(grilleJeu);
     }
 }
