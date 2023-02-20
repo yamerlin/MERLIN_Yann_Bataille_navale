@@ -194,7 +194,6 @@ public class bataille{
                 System.out.println("Toucher !");
             }
             grille[l][c] = 6;
-            grilleAffichage[l][c] = 6;
         }
     }
 
@@ -239,6 +238,7 @@ public class bataille{
         initGrilleOrdi();
         initGrilleJeu();
         while(vainqueur(grilleJeu) != true || vainqueur(grilleOrdi) != true){
+            System.out.println(" ");
             System.out.println("Tour de l'ordinateur : ");
             tirOrdiL = tirOrdinateur()[0];
             tirOrdiC = tirOrdinateur()[1];
@@ -258,13 +258,17 @@ public class bataille{
                 do {
                     System.out.println("Veuillez entrer le chiffre (1 - 10) de votre position de tir : ");
                     chiffreUtilisateur = scanner.nextLine();
-                    if (!chiffreUtilisateur.matches(expressionRegLettre)) {
-                        System.out.println("Ce n'est pas un chiffre comprise entre 1 et 10, veuillez recommencer.");
+                    if (!chiffreUtilisateur.matches(expressionRegChiffre)) {
+                        System.out.println("Ce n'est pas un chiffre compris entre 1 et 10, veuillez recommencer.");
                     }
                 } while (!chiffreUtilisateur.matches(expressionRegChiffre));
 
-                grilleAffichage[Integer.parseInt(chiffreUtilisateur) - 1][(int) lettreUtilisateur.charAt(0) - 65] = 1;
                 mouvement(grilleOrdi, Integer.parseInt(chiffreUtilisateur) - 1, (int) lettreUtilisateur.charAt(0) - 65);
+                grilleAffichage[Integer.parseInt(chiffreUtilisateur) - 1][(int) lettreUtilisateur.charAt(0) - 65] = 1;
+                if(grilleOrdi[Integer.parseInt(chiffreUtilisateur) - 1][(int) lettreUtilisateur.charAt(0) - 65] != 0){
+                    grilleAffichage[Integer.parseInt(chiffreUtilisateur) - 1][(int) lettreUtilisateur.charAt(0) - 65] = 6;
+                }
+
                 System.out.println("La grille de vos tirs (6 = bateau touche, 1 = tir a l'eau) : ");
                 AfficherGrille(grilleAffichage);
             }
