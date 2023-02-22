@@ -183,17 +183,18 @@ public class bataille{
     }
 
     public static void mouvement(int[][] grille, int l, int c){
+        int numBateau = grille[l][c];
         if(grille[l][c] == 0){
             System.out.println("A l'eau !");
         }
         else{
-            if(couler(grille, grille[l][c]) == true){
+            grille[l][c] = 6;
+            if(couler(grille, numBateau) == true){
                 System.out.println("Couler !");
             }
-            else{
+            else {
                 System.out.println("Toucher !");
             }
-            grille[l][c] = 6;
         }
     }
 
