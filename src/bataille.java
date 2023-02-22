@@ -207,17 +207,17 @@ public class bataille{
 
     public static boolean vainqueur(int grille[][]){
         boolean isVainqueur = false;
-        int nbBateauCouler = 0;
 
-        for(int i = 1; i<6; i++){
-            if(couler(grille, i) == true){
-                nbBateauCouler = nbBateauCouler + 1;
+        for(int i = 0; i<10; i++){
+            for (int j=0; j<10; j++){
+                if(grille[i][j] == 0 && grille[i][j] == 6){
+                    isVainqueur = true;
+                }
             }
         }
 
-        if(nbBateauCouler == 5){
-            isVainqueur = true;
-        }
+        System.out.println("testeuhtesteuh ihi ISVAIMQUEUR =" + isVainqueur);
+
 
         return isVainqueur;
     }
