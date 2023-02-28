@@ -206,12 +206,12 @@ public class bataille{
     }
 
     public static boolean vainqueur(int grille[][]){
-        boolean isVainqueur = false;
+        boolean isVainqueur = true;
 
         for(int i = 0; i<10; i++){
             for (int j=0; j<10; j++){
-                if(grille[i][j] == 0 && grille[i][j] == 6){
-                    isVainqueur = true;
+                if(grille[i][j] != 0 && grille[i][j] != 6){
+                    isVainqueur = false;
                 }
             }
         }
@@ -238,7 +238,7 @@ public class bataille{
 
         initGrilleOrdi();
         initGrilleJeu();
-        while(vainqueur(grilleJeu) != true || vainqueur(grilleOrdi) != true){
+        while(vainqueur(grilleJeu) != true && vainqueur(grilleOrdi) != true){
             System.out.println(" ");
             System.out.println("Tour de l'ordinateur : ");
             tirOrdiL = tirOrdinateur()[0];
