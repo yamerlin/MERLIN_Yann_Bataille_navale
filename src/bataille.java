@@ -216,9 +216,6 @@ public class bataille{
             }
         }
 
-        System.out.println("testeuhtesteuh ihi ISVAIMQUEUR =" + isVainqueur);
-
-
         return isVainqueur;
     }
 
@@ -244,7 +241,6 @@ public class bataille{
             tirOrdiL = tirOrdinateur()[0];
             tirOrdiC = tirOrdinateur()[1];
             mouvement(grilleJeu, tirOrdiL, tirOrdiC);
-            AfficherGrille(grilleOrdi);
 
             if(vainqueur(grilleJeu) != true) {
                 System.out.println("Tour du joueur : ");
