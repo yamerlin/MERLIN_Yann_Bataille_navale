@@ -1,12 +1,43 @@
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * Ce programme est un jeu de bataille navale contre un ordinateur qui tire aléatoirement <br>
+ * Réalisé dans le cadre du cours de programmation d'environnement en Java <br>
+ * Professeur : Martin CARIGNAN et Samuel LINDSAY <br>
+ * CEGEP de Sept-Iles <br>
+ * Session d'hiver 2023
+ *
+ * @author Yann MERLIN
+ * @version 1
+ */
 public class bataille{
 
+    /**
+     * Tableau 2D d'integer contenant les positions des tirs reçus et des bateaux de l'ordinateur
+     */
     public static int [][] grilleOrdi = new int[10][10];
-    public static int [][] grilleJeu = new int[10][10];
-    public static int [][] grilleAffichage = new int[10][10];   //Grille pour visualiser nos tirs deja effectue durant la partie
 
+    /**
+     * Tableau 2D d'integer contenant les positions des tirs reçus et des bateaux du joueur
+     */
+    public static int [][] grilleJeu = new int[10][10];
+
+    /**
+     * Tableau 2D d'integer contenant les positions des tirs déjà effectués par le joueur durant la partie
+     */
+    public static int [][] grilleAffichage = new int[10][10];
+
+    /**
+     * Fonction utilisée pour l'initialisation des grilles. Elle teste si les positions choisies pour les bateaux sont correctes.
+     * C'est-à-dire si le bateau ne dépasse pas de la grille ou s'il ne se superpose pas à un autre bateau.
+     *
+     * @param grille Grille sur laquelle le bateau est positionné
+     * @param l Integer compris entre 1 et 10 indiquant le numéro de ligne
+     * @param c Integer compris entre 1 et 10 indiquant le numéro de colonne
+     * @param d Integer compris entre 1 et 2 indiquant le sens du bateau
+     * @param t Integer compris entre 2 et 5 indiquant la taille du bateau
+     * @return isPosOk booléen indiquant si la position du bateau est valide ou non
+     */
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean isPosOk = true;
 
@@ -39,6 +70,9 @@ public class bataille{
         return isPosOk;
     }
 
+    /**
+     * Objet utilisé pour la génération de nombres aléatoires
+     */
     public static Random rand = new Random();
     public static int randRange(int a, int b){
         return rand.nextInt(b-a)+a;
